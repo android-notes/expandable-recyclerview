@@ -169,16 +169,7 @@ public class NestedAdapterDivider extends DividerItemDecoration {
                     l = dividerBeforeFirstGroup.getIntrinsicWidth();
                 }
             }
-            if (position == lastPosition) {
-                if (dividerAfterLastGroup != null) {
-                    if (orientation == VERTICAL) {
-                        b = dividerAfterLastGroup.getIntrinsicHeight();
-                    } else {
-                        r = dividerAfterLastGroup.getIntrinsicWidth();
-                    }
-                }
-            }
-            outRect.set(l, t, r, b);
+            setRightBottom(outRect, position, lastPosition, l, t, r, b);
             return;
         }
 
@@ -194,16 +185,7 @@ public class NestedAdapterDivider extends DividerItemDecoration {
                         l = dividerBetweenGroup.getIntrinsicWidth();
                     }
                 }
-                if (position == lastPosition) {
-                    if (dividerAfterLastGroup != null) {
-                        if (orientation == VERTICAL) {
-                            b = dividerAfterLastGroup.getIntrinsicHeight();
-                        } else {
-                            r = dividerAfterLastGroup.getIntrinsicWidth();
-                        }
-                    }
-                }
-                outRect.set(l, t, r, b);
+                setRightBottom(outRect, position, lastPosition, l, t, r, b);
                 return;
             }
             count++;
@@ -222,16 +204,7 @@ public class NestedAdapterDivider extends DividerItemDecoration {
                         }
                     }
 
-                    if (position == lastPosition) {
-                        if (dividerAfterLastGroup != null) {
-                            if (orientation == VERTICAL) {
-                                b = dividerAfterLastGroup.getIntrinsicHeight();
-                            } else {
-                                r = dividerAfterLastGroup.getIntrinsicWidth();
-                            }
-                        }
-                    }
-                    outRect.set(l, t, r, b);
+                    setRightBottom(outRect, position, lastPosition, l, t, r, b);
                     return;
                 } else {
                     if (dividerBetweenChild != null) {
@@ -242,16 +215,7 @@ public class NestedAdapterDivider extends DividerItemDecoration {
                         }
 
                     }
-                    if (position == lastPosition) {
-                        if (dividerAfterLastGroup != null) {
-                            if (orientation == VERTICAL) {
-                                b = dividerAfterLastGroup.getIntrinsicHeight();
-                            } else {
-                                r = dividerAfterLastGroup.getIntrinsicWidth();
-                            }
-                        }
-                    }
-                    outRect.set(l, t, r, b);
+                    setRightBottom(outRect, position, lastPosition, l, t, r, b);
                     return;
                 }
 
@@ -260,6 +224,19 @@ public class NestedAdapterDivider extends DividerItemDecoration {
         }
 
 
+    }
+
+    private void setRightBottom(Rect outRect, int position, int lastPosition, int l, int t, int r, int b) {
+        if (position == lastPosition) {
+            if (dividerAfterLastGroup != null) {
+                if (orientation == VERTICAL) {
+                    b = dividerAfterLastGroup.getIntrinsicHeight();
+                } else {
+                    r = dividerAfterLastGroup.getIntrinsicWidth();
+                }
+            }
+        }
+        outRect.set(l, t, r, b);
     }
 
     private Drawable getDrawableForChild(int position, NestedAdapter adapter) {
