@@ -94,7 +94,7 @@ public class NestedAdapterDivider extends DividerItemDecoration {
         canvas.restore();
     }
 
-    void getDecoratedBoundsWithMarginsInt(View view, Rect outBounds) {
+    private void getDecoratedBoundsWithMarginsInt(View view, Rect outBounds) {
         final RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) view.getLayoutParams();
         outBounds.set(view.getLeft() - lp.leftMargin,
                 view.getTop() - lp.topMargin,

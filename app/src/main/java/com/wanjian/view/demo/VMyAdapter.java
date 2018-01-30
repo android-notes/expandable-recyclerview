@@ -23,12 +23,12 @@ import java.util.List;
  * Created by wanjian on 2018/1/29.
  */
 
-public class MyAdapter extends NestedAdapter<GroupVH, ChildVH> {
+public class VMyAdapter extends NestedAdapter<GroupVH, ChildVH> {
 
 
     private List<Shop> shopList;
 
-    public MyAdapter(List<Shop> shopList) {
+    public VMyAdapter(List<Shop> shopList) {
         super();
         this.shopList = shopList;
     }
@@ -58,11 +58,11 @@ public class MyAdapter extends NestedAdapter<GroupVH, ChildVH> {
         Log.d(TAG, ">>> onCreateGroupViewHolder: " + viewType);
         Context context = parent.getContext();
         if (viewType == Shop.TYPE_ALL) {
-            return new AllVH(LayoutInflater.from(context).inflate(R.layout.item_group_all, parent, false));
+            return new AllVH(LayoutInflater.from(context).inflate(R.layout.h_item_group_all, parent, false));
         } else if (viewType == Shop.TYPE_OFFLINE) {
-            return new OffLineVH(LayoutInflater.from(context).inflate(R.layout.item_group_offline, parent, false));
+            return new OffLineVH(LayoutInflater.from(context).inflate(R.layout.h_item_group_offline, parent, false));
         } else {
-            return new OnLineVH(LayoutInflater.from(context).inflate(R.layout.item_group_online, parent, false));
+            return new OnLineVH(LayoutInflater.from(context).inflate(R.layout.h_item_group_online, parent, false));
         }
     }
 
@@ -94,12 +94,12 @@ public class MyAdapter extends NestedAdapter<GroupVH, ChildVH> {
         Log.d(TAG, ">>> onCreateChildViewHolder: " + viewType);
         Context context = parent.getContext();
         if (viewType == Goods.TYPE_CLOTHES) {
-            return new ClothesVH(LayoutInflater.from(context).inflate(R.layout.item_child_clothes, parent, false));
+            return new ClothesVH(LayoutInflater.from(context).inflate(R.layout.h_item_child_clothes, parent, false));
 
         } else if (viewType == Goods.TYPE_FOOD) {
-            return new FoodVH(LayoutInflater.from(context).inflate(R.layout.item_child_food, parent, false));
+            return new FoodVH(LayoutInflater.from(context).inflate(R.layout.h_item_child_food, parent, false));
         } else {
-            return new MilkVH(LayoutInflater.from(context).inflate(R.layout.item_child_milk, parent, false));
+            return new MilkVH(LayoutInflater.from(context).inflate(R.layout.h_item_child_milk, parent, false));
 
         }
     }

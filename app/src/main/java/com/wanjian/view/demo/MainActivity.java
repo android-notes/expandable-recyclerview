@@ -26,33 +26,21 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity {
+    NestedAdapterDivider divider;
+    List<Shop> shopList;
+    RecyclerView.Adapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        NestedAdapterDivider divider = new NestedAdapterDivider(this, NestedAdapterDivider.VERTICAL);
-
-        divider
-                .setDividerBeforeFirstGroup(getDividerDrawable(R.drawable.divider_before_first))
-                .setDividerBetweenGroup(getDividerDrawable(R.drawable.divider_between_group))
-                .setDividerAfterLastGroup(getDividerDrawable(R.drawable.divider_after_list))
-                .setDividerBetweenChild(getDividerDrawable(R.drawable.divider_between_child))
-                .setDividerBetweenGroupAndChild(getDividerDrawable(R.drawable.divider_between_group_child))
-        ;
-
-//        DividerItemDecoration divider=new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-//        divider.setDrawable(getDividerDrawable(R.drawable.divider_before_first));
-        recyclerView.addItemDecoration(divider);
-
-
-        final List<Shop> shopList = initData();
+        shopList = initData();
         showJson(shopList);
-        final RecyclerView.Adapter adapter = new MyAdapter(shopList);
-        recyclerView.setAdapter(adapter);
+
+        vertical(recyclerView);
 
 
         findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
@@ -66,6 +54,65 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+        findViewById(R.id.orientation).setOnClickListener(new View.OnClickListener() {
+            boolean vertical = true;
+
+            @Override
+            public void onClick(View v) {
+                vertical = !vertical;
+                recyclerView.getRecycledViewPool().clear();
+                if (vertical) {
+                    vertical(recyclerView);
+                } else {
+                    horizontal(recyclerView);
+                }
+
+            }
+        });
+    }
+
+    private void horizontal(RecyclerView recyclerView) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        if (divider != null) {
+            recyclerView.removeItemDecoration(divider);
+        }
+        divider = new NestedAdapterDivider(this, NestedAdapterDivider.HORIZONTAL);
+
+        divider
+                .setDividerBeforeFirstGroup(getDividerDrawable(R.drawable.v_divider_before_first))
+                .setDividerBetweenGroup(getDividerDrawable(R.drawable.v_divider_between_group))
+                .setDividerAfterLastGroup(getDividerDrawable(R.drawable.v_divider_after_last))
+                .setDividerBetweenChild(getDividerDrawable(R.drawable.v_divider_between_child))
+                .setDividerBetweenGroupAndChild(getDividerDrawable(R.drawable.v_divider_between_group_child))
+        ;
+
+        recyclerView.addItemDecoration(divider);
+
+        adapter = new HMyAdapter(shopList);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void vertical(RecyclerView recyclerView) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if (divider != null) {
+            recyclerView.removeItemDecoration(divider);
+        }
+        divider = new NestedAdapterDivider(this, NestedAdapterDivider.VERTICAL);
+
+        divider
+                .setDividerBeforeFirstGroup(getDividerDrawable(R.drawable.h_divider_before_first))
+                .setDividerBetweenGroup(getDividerDrawable(R.drawable.h_divider_between_group))
+                .setDividerAfterLastGroup(getDividerDrawable(R.drawable.h_divider_after_last))
+                .setDividerBetweenChild(getDividerDrawable(R.drawable.h_divider_between_child))
+                .setDividerBetweenGroupAndChild(getDividerDrawable(R.drawable.h_divider_between_group_child))
+        ;
+
+        recyclerView.addItemDecoration(divider);
+
+        adapter = new VMyAdapter(shopList);
+        recyclerView.setAdapter(adapter);
+
     }
 
     public Drawable getDividerDrawable(int resId) {
@@ -81,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(NestedAdapter.TAG, "showJson: \n" + s);
     }
 
-//    private List<Shop> initData() {
+    //    private List<Shop> initData() {
 //        List<Shop> shopList = new ArrayList<>();
 //        int count = 3;
 //        for (int i = 0; i < count; i++) {
