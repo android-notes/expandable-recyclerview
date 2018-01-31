@@ -73,3 +73,26 @@
 ```
 
 
+### 支持局部刷新，局部移除添加
+
+相关方法如下
+
+```java
+
+    public void notifyGroupItemChanged(int groupIndex)  
+
+    public void notifyGroupChanged(int groupIndex)  
+
+    public final void notifyChildItemChanged(int groupIndex, int childIndex)  
+
+    public final void notifyChildItemRangeChanged(int groupIndex, int childIndex, int itemCount)  
+
+    public final void notifyChildItemInserted(int groupIndex, int childIndex)  
+    
+    public final void notifyChildItemRangeInserted(int groupIndex, int childIndex, int itemCount)  
+
+    public final void notifyChildItemRemoved(int groupIndex, int childIndex)  
+
+    public final void notifyChildItemRangeRemoved(int groupIndex, int childIndex, int itemCount) 
+
+```
