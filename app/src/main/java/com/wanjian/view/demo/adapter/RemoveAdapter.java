@@ -1,4 +1,4 @@
-package com.wanjian.view.demo;
+package com.wanjian.view.demo.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wanjian.view.ExpandableAdapter;
+import com.wanjian.view.demo.R;
 import com.wanjian.view.demo.data.Goods;
 import com.wanjian.view.demo.data.Shop;
 import com.wanjian.view.demo.vh.ChildVH;

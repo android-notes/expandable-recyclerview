@@ -7,7 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.wanjian.view.demo.adapter.GroupAdapter;
+import com.wanjian.view.ExpandableAdapter;
+import com.wanjian.view.demo.adapter.RefreshAdapter;
 import com.wanjian.view.demo.data.Shop;
 
 import java.util.List;
@@ -19,15 +20,15 @@ import static com.wanjian.view.demo.utils.Utils.showJson;
 /**
  * Created by wanjian on 2018/1/29.
  */
-public class GroupDemoActivity extends AppCompatActivity {
+public class RefreshDemoActivity extends AppCompatActivity {
     List<Shop> shopList;
-    RecyclerView.Adapter adapter;
+    ExpandableAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_group);
+        setContentView(R.layout.activity_refresh);
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         shopList = geneRandomData();
@@ -54,7 +55,8 @@ public class GroupDemoActivity extends AppCompatActivity {
 
     private void vertical(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new GroupAdapter(shopList);
+
+        adapter = new RefreshAdapter(shopList);
         recyclerView.setAdapter(adapter);
 
     }

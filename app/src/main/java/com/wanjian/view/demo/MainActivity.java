@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RemoveDemoActivity.class));
             }
+        });  findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RefreshDemoActivity.class));
+            }
         });
     }
 

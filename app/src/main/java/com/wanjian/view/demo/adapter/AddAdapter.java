@@ -1,4 +1,4 @@
-package com.wanjian.view.demo;
+package com.wanjian.view.demo.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wanjian.view.ExpandableAdapter;
+import com.wanjian.view.demo.R;
 import com.wanjian.view.demo.data.Goods;
 import com.wanjian.view.demo.data.Shop;
 import com.wanjian.view.demo.vh.ChildVH;
@@ -26,12 +27,12 @@ import static com.wanjian.view.demo.data.Goods.TYPE_FOOD;
  * Created by wanjian on 2018/1/29.
  */
 
-public class VExpandableAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
+public class AddAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
 
 
     private List<Shop> shopList;
 
-    public VExpandableAdapter(List<Shop> shopList) {
+    public AddAdapter(List<Shop> shopList) {
         super();
         this.shopList = shopList;
     }
@@ -75,14 +76,25 @@ public class VExpandableAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                notifyGroupChanged(position);
+//
+//                notifyChildItemRangeChanged(position, 0, getChildCount(position));
+//
+//                notifyChildItemRangeChanged(position, 1, getChildCount(position) - 1);
+//
+//                notifyChildItemRangeRemoved(position, 0, getChildCount(position));
+//                shopList.get(position).goods.clear();
 
-                if (isExpand(position)) {
-                    collapseGroup(position);
-                } else {
-                    expandGroup(position);
+
+                int count = 2;
+                int start = getChildCount(position);
+                notifyChildItemRangeInserted(position, start, count);
+                for (int i = start; i < start + count; i++) {
+                    shopList.get(position).goods.add(start, new Goods("add", i, TYPE_FOOD, 0));
                 }
             }
         };
+
 
         int type = getGroupItemViewType(position);
         if (type == Shop.TYPE_ALL) {
@@ -91,22 +103,21 @@ public class VExpandableAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ALL");
             vh.refresh.setOnClickListener(listener);
-            vh.refresh.setText("Open/Close");
+            vh.refresh.setText("Add");
         } else if (type == Shop.TYPE_OFFLINE) {
             OffLineVH vh = (OffLineVH) holder;
             vh.index.setText((shopList.get(position).reBindTimes++) + "");
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_OFFLINE");
             vh.refresh.setOnClickListener(listener);
-            vh.refresh.setText("Open/Close");
-
+            vh.refresh.setText("Add");
         } else {
             OnLineVH vh = (OnLineVH) holder;
             vh.index.setText((shopList.get(position).reBindTimes++) + "");
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ONLINE");
             vh.refresh.setOnClickListener(listener);
-            vh.refresh.setText("Open/Close");
+            vh.refresh.setText("Add");
         }
 
     }

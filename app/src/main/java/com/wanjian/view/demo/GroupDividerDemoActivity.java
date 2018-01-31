@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.wanjian.view.NestedAdapterDivider;
+import com.wanjian.view.demo.adapter.HDividerAdapter;
+import com.wanjian.view.demo.adapter.VDividerAdapter;
 import com.wanjian.view.demo.data.Shop;
 
 import java.util.List;
@@ -85,7 +87,7 @@ public class GroupDividerDemoActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(divider);
 
-        adapter = new HMyAdapter(shopList);
+        adapter = new HDividerAdapter(shopList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -106,7 +108,7 @@ public class GroupDividerDemoActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(divider);
 
-        adapter = new VMyAdapter(shopList);
+        adapter = new VDividerAdapter(shopList);
         recyclerView.setAdapter(adapter);
 
     }

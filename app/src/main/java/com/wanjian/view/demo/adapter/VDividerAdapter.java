@@ -1,4 +1,4 @@
-package com.wanjian.view.demo;
+package com.wanjian.view.demo.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wanjian.view.NestedAdapter;
+import com.wanjian.view.demo.R;
 import com.wanjian.view.demo.data.Goods;
 import com.wanjian.view.demo.data.Shop;
 import com.wanjian.view.demo.vh.ChildVH;
@@ -26,12 +27,12 @@ import static com.wanjian.view.demo.data.Goods.TYPE_FOOD;
  * Created by wanjian on 2018/1/29.
  */
 
-public class VMyAdapter extends NestedAdapter<GroupVH, ChildVH> {
+public class VDividerAdapter extends NestedAdapter<GroupVH, ChildVH> {
 
 
     private List<Shop> shopList;
 
-    public VMyAdapter(List<Shop> shopList) {
+    public VDividerAdapter(List<Shop> shopList) {
         super();
         this.shopList = shopList;
     }
@@ -72,56 +73,32 @@ public class VMyAdapter extends NestedAdapter<GroupVH, ChildVH> {
     @Override
     public void onBindGroupViewHolder(final GroupVH holder, final int position) {
         Log.d(TAG, "onBindGroupViewHolder: " + position + " " + holder);
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                notifyGroupChanged(position);
 
-//                notifyChildItemRangeChanged(position,0,getChildCount(position));
-
-//                notifyChildItemRangeChanged(position,1,getChildCount(position)-1);
-
-//                notifyChildItemRangeRemoved(position,0,getChildCount(position));
-//                shopList.get(position).goods.clear();
-
-                int count = 2;
-                int start = getChildCount(position);
-                notifyChildItemRangeInserted(position, start, count);
-                for (int i = start; i < start + count; i++) {
-                    shopList.get(position).goods.add(start, new Goods("add", i, TYPE_FOOD, 0));
-                }
-            }
-        };
         int type = getGroupItemViewType(position);
         if (type == Shop.TYPE_ALL) {
             AllVH vh = ((AllVH) holder);
-            vh.index.setText((shopList.get(position).reBindTimes++) + "");
-            vh.count.setText("" + getChildCount(position));
+            vh.index.setText("" + position);
+            vh.count.setText("child:" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ALL");
-            vh.refresh.setOnClickListener(listener);
+            vh.refresh.setVisibility(View.GONE);
 
         } else if (type == Shop.TYPE_OFFLINE) {
             OffLineVH vh = (OffLineVH) holder;
-            vh.index.setText((shopList.get(position).reBindTimes++) + "");
-            vh.count.setText("" + getChildCount(position));
+            vh.index.setText("" + position);
+            vh.count.setText("child:" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_OFFLINE");
-            vh.refresh.setOnClickListener(listener);
+            vh.refresh.setVisibility(View.GONE);
 
         } else {
             OnLineVH vh = (OnLineVH) holder;
-            vh.index.setText((shopList.get(position).reBindTimes++) + "");
-            vh.count.setText("" + getChildCount(position));
+            vh.index.setText("" + position);
+            vh.count.setText("child:" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ONLINE");
-            vh.refresh.setOnClickListener(listener);
+            vh.refresh.setVisibility(View.GONE);
 
 
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                notifyGroupItemChanged(position);
-            }
-        });
+
     }
 
     @Override
@@ -146,30 +123,25 @@ public class VMyAdapter extends NestedAdapter<GroupVH, ChildVH> {
         if (type == Goods.TYPE_CLOTHES) {
             ClothesVH vh = (ClothesVH) holder;
             Goods goods = shopList.get(groupIndex).goods.get(childIndex);
-            vh.index.setText((goods.reBindTimes++) + "");
+            vh.index.setText("" + childIndex);
             vh.name.setText(goods.name);
             vh.sku.setText("TYPE_CLOTHES");
         } else if (type == TYPE_FOOD) {
 
             FoodVH vh = (FoodVH) holder;
             Goods goods = shopList.get(groupIndex).goods.get(childIndex);
-            vh.index.setText((goods.reBindTimes++) + "");
+            vh.index.setText("" + childIndex);
             vh.name.setText(goods.name);
             vh.sku.setText("TYPE_FOOD");
         } else {
 
             MilkVH vh = (MilkVH) holder;
             Goods goods = shopList.get(groupIndex).goods.get(childIndex);
-            vh.index.setText((goods.reBindTimes++) + "");
+            vh.index.setText("" + childIndex);
             vh.name.setText(goods.name);
             vh.sku.setText("TYPE_MILK");
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                notifyChildItemChanged(groupIndex, childIndex);
-            }
-        });
+
     }
 
 

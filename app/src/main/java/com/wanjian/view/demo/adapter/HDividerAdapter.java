@@ -1,4 +1,4 @@
-package com.wanjian.view.demo;
+package com.wanjian.view.demo.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -24,12 +24,12 @@ import java.util.List;
  * Created by wanjian on 2018/1/29.
  */
 
-public class HMyAdapter extends NestedAdapter<GroupVH, ChildVH> {
+public class HDividerAdapter extends NestedAdapter<GroupVH, ChildVH> {
 
 
     private List<Shop> shopList;
 
-    public HMyAdapter(List<Shop> shopList) {
+    public HDividerAdapter(List<Shop> shopList) {
         super();
         this.shopList = shopList;
     }

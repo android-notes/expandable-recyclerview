@@ -1,6 +1,5 @@
 package com.wanjian.view.demo;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.wanjian.view.ExpandableAdapter;
+import com.wanjian.view.demo.adapter.VExpandableAdapter;
 import com.wanjian.view.demo.data.Shop;
 
 import java.util.List;

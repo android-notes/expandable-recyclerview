@@ -1,11 +1,13 @@
-package com.wanjian.view.demo;
+package com.wanjian.view.demo.adapter;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
-import com.wanjian.view.NestedAdapter;
+import com.wanjian.view.ExpandableAdapter;
+import com.wanjian.view.demo.R;
 import com.wanjian.view.demo.data.Goods;
 import com.wanjian.view.demo.data.Shop;
 import com.wanjian.view.demo.vh.ChildVH;
@@ -25,12 +27,12 @@ import static com.wanjian.view.demo.data.Goods.TYPE_FOOD;
  * Created by wanjian on 2018/1/29.
  */
 
-public class GroupAdapter extends NestedAdapter<GroupVH, ChildVH> {
+public class RefreshAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
 
 
     private List<Shop> shopList;
 
-    public GroupAdapter(List<Shop> shopList) {
+    public RefreshAdapter(List<Shop> shopList) {
         super();
         this.shopList = shopList;
     }
@@ -71,6 +73,13 @@ public class GroupAdapter extends NestedAdapter<GroupVH, ChildVH> {
     @Override
     public void onBindGroupViewHolder(final GroupVH holder, final int position) {
         Log.d(TAG, "onBindGroupViewHolder: " + position + " " + holder);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyGroupChanged(position);
+            }
+        };
+
 
         int type = getGroupItemViewType(position);
         if (type == Shop.TYPE_ALL) {
@@ -78,20 +87,29 @@ public class GroupAdapter extends NestedAdapter<GroupVH, ChildVH> {
             vh.index.setText((shopList.get(position).reBindTimes++) + "");
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ALL");
-
+            vh.refresh.setOnClickListener(listener);
+            vh.refresh.setText("Refresh Group");
         } else if (type == Shop.TYPE_OFFLINE) {
             OffLineVH vh = (OffLineVH) holder;
             vh.index.setText((shopList.get(position).reBindTimes++) + "");
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_OFFLINE");
-
+            vh.refresh.setOnClickListener(listener);
+            vh.refresh.setText("Refresh Group");
         } else {
             OnLineVH vh = (OnLineVH) holder;
             vh.index.setText((shopList.get(position).reBindTimes++) + "");
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ONLINE");
-
+            vh.refresh.setOnClickListener(listener);
+            vh.refresh.setText("Refresh Group");
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyGroupItemChanged(position);
+            }
+        });
 
     }
 
@@ -135,6 +153,12 @@ public class GroupAdapter extends NestedAdapter<GroupVH, ChildVH> {
             vh.name.setText(goods.name);
             vh.sku.setText("TYPE_MILK");
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyChildItemChanged(groupIndex, childIndex);
+            }
+        });
 
     }
 

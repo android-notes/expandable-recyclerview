@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.wanjian.view.ExpandableAdapter;
+import com.wanjian.view.demo.adapter.RemoveAdapter;
 import com.wanjian.view.demo.data.Shop;
 
 import java.util.List;
