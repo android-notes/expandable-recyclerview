@@ -8,6 +8,8 @@ import static android.support.v7.widget.RecyclerView.NO_ID;
 
 /**
  * Created by wanjian on 2018/1/29.
+ * <p>
+ * 分组adapter，支持多种group布局，多种child布局
  */
 
 public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> extends RecyclerView.Adapter<ViewHolder> {
@@ -204,14 +206,14 @@ public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> 
 
         int position = 0;
         int i = 0;
-        while (i < groupIndex - 1) {
+        while (i < groupIndex) {
+            position++;
             position += getSafeChildCount(i);
             i++;
         }
-        position = position + groupIndex;
-
         position += childIndex;
 
+        position++;
         notifyItemRangeInserted(position, itemCount);
     }
 

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="40dp"
+    android:insetRight="40dp">
+    <shape>
+        <gradient
+            android:endColor="#00f"
+            android:startColor="#f00" />
 
-    <solid android:color="@color/colorBlue" />
-    <size android:height="5dp"></size>
-</shape>
+        <size android:height="2dp"></size>
+    </shape>
+
+
+</inset>

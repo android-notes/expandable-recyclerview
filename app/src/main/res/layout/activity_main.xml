@@ -4,35 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Group Demo"
+        android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="refresh"
-            android:textAllCaps="false" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/orientation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="orientation"
-            android:textAllCaps="false" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Divider Demo"
+        android:textAllCaps="false" />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/expandListDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ExpandList Demo"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Demo"
+        android:textAllCaps="false" />
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Demo"
+        android:textAllCaps="false" />
+
 </LinearLayout>

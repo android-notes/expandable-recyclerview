@@ -10,6 +10,15 @@ import android.view.View;
 
 /**
  * Created by wanjian on 2018/1/30.
+ * <br/>
+ * <p>
+ * 分隔条。支持为 {@link NestedAdapter}添加头部，尾部，group间，child间，group和child间添加自定义divider
+ *
+ * @see NestedAdapterDivider#setDividerBeforeFirstGroup(Drawable)
+ * @see NestedAdapterDivider#setDividerAfterLastGroup(Drawable)
+ * @see NestedAdapterDivider#setDividerBetweenChild(Drawable)
+ * @see NestedAdapterDivider#setDividerBetweenGroupAndChild(Drawable)
+ * @see NestedAdapterDivider#setDividerBetweenGroup(Drawable)
  */
 
 public class NestedAdapterDivider extends DividerItemDecoration {

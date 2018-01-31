@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <solid android:color="@color/colorRed" />
-    <size android:height="20dp"></size>
-</shape>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:filter="true"
+    android:gravity="fill_horizontal"
+    android:src="@mipmap/tile"
+    />
