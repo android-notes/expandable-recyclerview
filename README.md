@@ -6,6 +6,8 @@
 
 支持多种group布局和多种child布局
 
+![group](https://github.com/android-notes/expandable-recyclerview/blob/master/group.jpg?raw=true)
+
 继承`NestedAdapter`,实现下列方法即可，跟使用`ExpandableListview`类似
 
 ```java
@@ -37,6 +39,8 @@
 
 ### 为NestedAdapter添加divider
 
+![divider](https://github.com/android-notes/expandable-recyclerview/blob/master/divider.jpg?raw=true)
+
 支持添加头部，尾部，group间，child间，group和child间添加自定义divider
 
 ```java
@@ -55,6 +59,9 @@
 ```
 
 ### 展开折叠Recyclerview
+
+![group](https://github.com/android-notes/expandable-recyclerview/blob/master/expan.gif?raw=true)
+
 
 继承自ExpandableAdapter即可，调用如下方法实现展开折叠，同样支持多种group布局和多种child布局
 
