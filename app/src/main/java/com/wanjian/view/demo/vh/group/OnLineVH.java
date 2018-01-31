@@ -1,6 +1,7 @@
 package com.wanjian.view.demo.vh.group;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.wanjian.view.demo.R;
@@ -17,10 +18,12 @@ public class OnLineVH extends GroupVH {
     public TextView name;
     public TextView count;
 
+    public Button refresh;
     public OnLineVH(View itemView) {
         super(itemView);
         index = itemView.findViewById(R.id.index);
         name = itemView.findViewById(R.id.name);
         count = itemView.findViewById(R.id.count);
+        refresh = itemView.findViewById(R.id.refresh);
     }
 }

@@ -14,4 +14,16 @@ public class Goods {
     public String name;
     public int index;
     public int goodsType;
+
+    public int reBindTimes = 0;
+
+    public Goods() {
+    }
+
+    public Goods(String name, int index, int goodsType, int reBindTimes) {
+        this.name = name;
+        this.index = index;
+        this.goodsType = goodsType;
+        this.reBindTimes = reBindTimes;
+    }
 }

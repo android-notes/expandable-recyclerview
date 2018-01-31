@@ -138,6 +138,137 @@ public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> 
         return count;
     }
 
+    public void notifyGroupItemChanged(int groupIndex) {
+        int position = realGroupItemPosition(groupIndex);
+        if (position == -1) {
+            return;
+        }
+        notifyItemChanged(position);
+    }
+
+
+    public void notifyGroupChanged(int groupIndex) {
+        int from = realGroupItemPosition(groupIndex);
+        if (from == -1) {
+            return;
+        }
+        int count = getSafeChildCount(groupIndex);
+
+        notifyItemRangeChanged(from, count + 1);
+    }
+
+    public final void notifyChildItemChanged(int groupIndex, int childIndex) {
+
+        notifyChildItemRangeChanged(groupIndex, childIndex, 1);
+    }
+
+
+    public final void notifyChildItemRangeChanged(int groupIndex, int childIndex, int itemCount) {
+        if (itemCount <= 0) {
+            return;
+        }
+        int childPosition = realChildItemPosition(groupIndex, childIndex);
+        if (childPosition == -1) {
+            return;
+        }
+
+        int childCount = getSafeChildCount(groupIndex);
+
+        if (childIndex >= childCount) {
+            return;
+        }
+        if (childCount < childIndex + itemCount) {
+            itemCount = childCount - childIndex;
+        }
+        notifyItemRangeChanged(childPosition, itemCount);
+    }
+
+
+    public final void notifyChildItemInserted(int groupIndex, int childIndex) {
+        notifyChildItemRangeInserted(groupIndex, childIndex, 1);
+    }
+
+    public final void notifyChildItemRangeInserted(int groupIndex, int childIndex, int itemCount) {
+        if (itemCount <= 0 || groupIndex < 0 || childIndex < 0) {
+            return;
+        }
+        int groupCount = getSafeGroupCount();
+        if (groupIndex >= groupCount) {
+            return;
+        }
+
+        int childCount = getSafeChildCount(groupIndex);
+        if (childCount < childIndex) {
+            return;
+        }
+
+        int position = 0;
+        int i = 0;
+        while (i < groupIndex - 1) {
+            position += getSafeChildCount(i);
+            i++;
+        }
+        position = position + groupIndex;
+
+        position += childIndex;
+
+        notifyItemRangeInserted(position, itemCount);
+    }
+
+
+    public final void notifyChildItemRemoved(int groupIndex, int childIndex) {
+        notifyChildItemRangeRemoved(groupIndex, childIndex, 1);
+    }
+
+
+    public final void notifyChildItemRangeRemoved(int groupIndex, int childIndex, int itemCount) {
+        if (itemCount <= 0) {
+            return;
+        }
+        int childPosition = realChildItemPosition(groupIndex, childIndex);
+        if (childPosition == -1) {
+            return;
+        }
+
+        int childCount = getSafeChildCount(groupIndex);
+
+        if (childIndex >= childCount) {
+            return;
+        }
+        if (childCount < childIndex + itemCount) {
+            itemCount = childCount - childIndex;
+        }
+        notifyItemRangeRemoved(childPosition, itemCount);
+    }
+
+    private int realGroupItemPosition(int groupIndex) {
+        int groupCount = getSafeGroupCount();
+        if (groupIndex >= groupCount || groupIndex < 0) {
+            return -1;
+        }
+        int count = 0;
+        for (int i = 0; i < groupIndex; i++) {
+            count++;
+            count += getSafeChildCount(i);
+        }
+
+        return count;
+    }
+
+    private int realChildItemPosition(int groupIndex, int childIndex) {
+
+        int childCount = getSafeChildCount(groupIndex);
+        if (childIndex >= childCount || childIndex < 0) {
+            return -1;
+        }
+        int groupPosition = realGroupItemPosition(groupIndex);
+        if (groupPosition == -1) {
+            return -1;
+        }
+        return groupPosition + childIndex + 1;
+    }
+
+
     protected abstract int getGroupCount();
 
     protected abstract int getChildCount(int groupIndex);

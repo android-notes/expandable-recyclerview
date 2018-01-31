@@ -16,6 +16,7 @@ public class Shop {
     public int index;
     public int shopType;
 
+    public int reBindTimes = 0;
     public List<Goods> goods;
 
 }

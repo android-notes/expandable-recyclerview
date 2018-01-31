@@ -37,4 +37,10 @@
         android:layout_marginLeft="5dp"
         android:textColor="#000"
         tools:text="child count" />
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:text="Refresh Group"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content" />
 </LinearLayout>
