@@ -19,6 +19,7 @@ public class OnLineVH extends GroupVH {
     public TextView count;
 
     public Button refresh;
+
     public OnLineVH(View itemView) {
         super(itemView);
         index = itemView.findViewById(R.id.index);

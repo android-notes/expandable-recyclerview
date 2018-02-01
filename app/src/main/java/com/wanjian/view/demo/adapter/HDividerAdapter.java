@@ -75,17 +75,17 @@ public class HDividerAdapter extends NestedAdapter<GroupVH, ChildVH> {
             AllVH vh = ((AllVH) holder);
             vh.index.setText("" + position);
             vh.count.setText("" + getChildCount(position));
-            vh.name.setText(shopList.get(position).shopName+"\nTYPE_ALL");
+            vh.name.setText(shopList.get(position).shopName + "\nTYPE_ALL");
         } else if (type == Shop.TYPE_OFFLINE) {
             OffLineVH vh = (OffLineVH) holder;
             vh.index.setText("" + position);
             vh.count.setText("" + getChildCount(position));
-            vh.name.setText(shopList.get(position).shopName+"\nTYPE_OFFLINE");
+            vh.name.setText(shopList.get(position).shopName + "\nTYPE_OFFLINE");
         } else {
             OnLineVH vh = (OnLineVH) holder;
             vh.index.setText("" + position);
             vh.count.setText("" + getChildCount(position));
-            vh.name.setText(shopList.get(position).shopName+"\nTYPE_ONLINE");
+            vh.name.setText(shopList.get(position).shopName + "\nTYPE_ONLINE");
 
         }
     }

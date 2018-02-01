@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.wanjian.view.ExpandableAdapter;
 import com.wanjian.view.demo.R;
@@ -77,10 +78,12 @@ public class VExpandableAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
             @Override
             public void onClick(View v) {
 
-                if (isExpand(position)) {
+                if (isExpanded(position)) {
                     collapseGroup(position);
+                    ((Button) v).setText("Open");
                 } else {
                     expandGroup(position);
+                    ((Button) v).setText("Close");
                 }
             }
         };
@@ -92,14 +95,14 @@ public class VExpandableAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ALL");
             vh.refresh.setOnClickListener(listener);
-            vh.refresh.setText("Open/Close");
+            vh.refresh.setText(isExpanded(position) ? "Close" : "Open");
         } else if (type == Shop.TYPE_OFFLINE) {
             OffLineVH vh = (OffLineVH) holder;
             vh.index.setText((shopList.get(position).reBindTimes++) + "");
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_OFFLINE");
             vh.refresh.setOnClickListener(listener);
-            vh.refresh.setText("Open/Close");
+            vh.refresh.setText(isExpanded(position) ? "Close" : "Open");
 
         } else {
             OnLineVH vh = (OnLineVH) holder;
@@ -107,7 +110,7 @@ public class VExpandableAdapter extends ExpandableAdapter<GroupVH, ChildVH> {
             vh.count.setText("" + getChildCount(position));
             vh.name.setText(shopList.get(position).shopName + "  TYPE_ONLINE");
             vh.refresh.setOnClickListener(listener);
-            vh.refresh.setText("Open/Close");
+            vh.refresh.setText(isExpanded(position) ? "Close" : "Open");
         }
 
     }

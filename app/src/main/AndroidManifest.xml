@@ -8,8 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/header"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:testOnly="false">
+        android:testOnly="false"
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".GroupDividerDemoActivity" />
-        <activity android:name=".ExpandListDemoActivity"/>
-        <activity android:name=".GroupDemoActivity"/>
-        <activity android:name=".AddDemoActivity"/>
-        <activity android:name=".RemoveDemoActivity"/>
-        <activity android:name=".RefreshDemoActivity"/>
+        <activity android:name=".ExpandListDemoActivity" />
+        <activity android:name=".GroupDemoActivity" />
+        <activity android:name=".AddDemoActivity" />
+        <activity android:name=".RemoveDemoActivity" />
+        <activity android:name=".RefreshDemoActivity" />
     </application>
 
 </manifest>

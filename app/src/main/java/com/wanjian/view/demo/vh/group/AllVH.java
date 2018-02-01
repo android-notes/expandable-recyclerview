@@ -16,6 +16,7 @@ public class AllVH extends GroupVH {
     public TextView name;
     public TextView count;
     public Button refresh;
+
     public AllVH(View itemView) {
         super(itemView);
         index = itemView.findViewById(R.id.index);

@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
     android:background="#fff"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
     android:padding="10dp">
 
     <TextView

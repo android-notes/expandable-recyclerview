@@ -74,5 +74,4 @@ public class ExpandListDemoActivity extends AppCompatActivity {
     }
 
 
-
 }

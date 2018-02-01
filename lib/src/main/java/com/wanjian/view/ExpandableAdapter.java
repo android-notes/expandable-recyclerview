@@ -2,8 +2,7 @@ package com.wanjian.view;
 
 import android.support.v7.widget.RecyclerView;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.BitSet;
 
 /**
  * Created by wanjian on 2018/1/31.
@@ -11,46 +10,42 @@ import java.util.Map;
 
 public abstract class ExpandableAdapter<G extends RecyclerView.ViewHolder, C extends RecyclerView.ViewHolder> extends NestedAdapter<G, C> {
 
-    private Map<Integer, Boolean> isExpanded = new HashMap<>();
+    private BitSet isCollapsed = new BitSet();
 
     @Override
     int getSafeChildCount(int groupIndex) {
-        if (isExpand(groupIndex)) {
+        if (isExpanded(groupIndex)) {
             return super.getSafeChildCount(groupIndex);
         }
         return 0;
     }
 
     public void collapseGroup(int groupIndex) {
-        if (isExpand(groupIndex)) {
+        if (isExpanded(groupIndex)) {
             notifyChildItemRangeRemoved(groupIndex, 0, getSafeChildCount(groupIndex));
-            isExpanded.put(groupIndex, false);
+            isCollapsed.set(groupIndex);
         }
     }
 
     public void expandGroup(int groupIndex) {
-        if (isExpand(groupIndex) == false) {
-            isExpanded.put(groupIndex, true);
+        if (isExpanded(groupIndex) == false) {
+            isCollapsed.clear(groupIndex);
             notifyChildItemRangeInserted(groupIndex, 0, getSafeChildCount(groupIndex));
         }
     }
 
-    public boolean isExpand(int groupIndex) {
-        Boolean state = isExpanded.get(groupIndex);
-        return state == null || state;
+    public boolean isExpanded(int groupIndex) {
+        return !isCollapsed.get(groupIndex);
     }
 
     public void collapseAllGroup() {
         int groupCount = getSafeGroupCount();
-        isExpanded.clear();
-        for (int i = 0; i < groupCount; i++) {
-            isExpanded.put(i, false);
-        }
+        isCollapsed.set(0, groupCount, true);
         notifyDataSetChanged();
     }
 
     public void expandAllGroup() {
-        isExpanded.clear();
+        isCollapsed.clear();
         notifyDataSetChanged();
     }
 

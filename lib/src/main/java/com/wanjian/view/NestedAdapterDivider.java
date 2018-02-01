@@ -23,13 +23,13 @@ import android.view.View;
 
 public class NestedAdapterDivider extends DividerItemDecoration {
 
+    protected final int orientation;
+    private final Rect mBounds = new Rect();
     private Drawable dividerBetweenGroup;
     private Drawable dividerBetweenChild;
     private Drawable dividerBetweenGroupAndChild;
     private Drawable dividerBeforeFirstGroup;
     private Drawable dividerAfterLastGroup;
-    protected final int orientation;
-    private final Rect mBounds = new Rect();
 
     public NestedAdapterDivider(Context context, int orientation) {
         super(context, orientation);
