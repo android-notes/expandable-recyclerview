@@ -21,6 +21,9 @@ public abstract class ExpandableAdapter<G extends RecyclerView.ViewHolder, C ext
     }
 
     public void collapseGroup(int groupIndex) {
+        if (groupIndex < 0 || groupIndex >= getSafeGroupCount()) {
+            return;
+        }
         if (isExpanded(groupIndex)) {
             notifyChildItemRangeRemoved(groupIndex, 0, getSafeChildCount(groupIndex));
             isCollapsed.set(groupIndex);
@@ -28,6 +31,9 @@ public abstract class ExpandableAdapter<G extends RecyclerView.ViewHolder, C ext
     }
 
     public void expandGroup(int groupIndex) {
+        if (groupIndex < 0 || groupIndex >= getSafeGroupCount()) {
+            return;
+        }
         if (isExpanded(groupIndex) == false) {
             isCollapsed.clear(groupIndex);
             notifyChildItemRangeInserted(groupIndex, 0, getSafeChildCount(groupIndex));
@@ -35,6 +41,9 @@ public abstract class ExpandableAdapter<G extends RecyclerView.ViewHolder, C ext
     }
 
     public boolean isExpanded(int groupIndex) {
+        if (groupIndex < 0 || groupIndex >= getSafeGroupCount()) {
+            return false;
+        }
         return !isCollapsed.get(groupIndex);
     }
 
