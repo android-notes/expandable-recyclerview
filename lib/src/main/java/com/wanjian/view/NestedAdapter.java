@@ -313,4 +313,12 @@ public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> 
 
     protected abstract void onBindChildViewHolder(C holder, int groupIndex, int childIndex);
 
+    protected <T> T getGroupData(int groupIndex) {
+        return null;
+    }
+
+    protected <T> T getChildData(int groupIndex, int childIndex) {
+        return null;
+    }
+
 }
