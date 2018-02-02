@@ -1,19 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
     compileSdkVersion 26
-
-
-
+    buildToolsVersion "26.0.1"
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
-
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -21,12 +17,37 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+}
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:recyclerview-v7:26.1.0'
+}
+
+
+// clean -- build  --- generatePomFileForReleasePublication---publishReleasePublicationToMabenLocal---bintrayUpload---publishing
+publish {
+    groupId = 'com.wanjian'
+    artifactId = 'expandable-recyclerview'
+    publishVersion = '0.0.1'
+    desc = ''
+    website = 'https://github.com/android-notes/expandable-recyclerview'
+
+    bintrayUser = 'wanjian' // 账户名
+    bintrayKey = '' // 就是API key
+    dryRun = false
+
 }

@@ -140,10 +140,9 @@ public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> 
         return count;
     }
 
-    /**
+    /*
      * update group item only,do not update child which belong to this group
      *
-     * @param groupIndex
      */
     public void notifyGroupItemChanged(int groupIndex) {
         int position = realGroupItemPosition(groupIndex);
@@ -154,10 +153,9 @@ public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> 
     }
 
 
-    /**
+    /*
      * update group,include child which belong to this group
      *
-     * @param groupIndex
      */
     public void notifyGroupChanged(int groupIndex) {
         int from = realGroupItemPosition(groupIndex);
@@ -169,23 +167,18 @@ public abstract class NestedAdapter<G extends ViewHolder, C extends ViewHolder> 
         notifyItemRangeChanged(from, count + 1);
     }
 
-    /**
+    /*
      * update one child only
      *
-     * @param groupIndex
-     * @param childIndex
      */
     public final void notifyChildItemChanged(int groupIndex, int childIndex) {
 
         notifyChildItemRangeChanged(groupIndex, childIndex, 1);
     }
 
-    /**
+    /*
      * only update children which belong to this group,from  childIndex to childIndex+itemCount,
      *
-     * @param groupIndex
-     * @param childIndex
-     * @param itemCount
      */
     public final void notifyChildItemRangeChanged(int groupIndex, int childIndex, int itemCount) {
         if (itemCount <= 0) {
